@@ -4,4 +4,35 @@
 
 <p>Welcome
 
+
+
+
+<%- include('partials/header'); -%>
+
+<H1>HPV Vacc rendered as html</H1>
+
+
+<H2>Vaccination details</H2>
+
+<table>
+  <tr>
+    <td>vaccineProcedure (SNOMED)</td>
+    <td><%= vaccineProcedureCode %></td>
+  </tr>
+  <tr>
+    <td>vaccineProcedure (display)</td>
+    <td><%= vaccineProcedureDisplay %></td>
+  </tr>
+  <tr>
+  <tr>
+    <td>vaccineCode (SNOMED)</td>
+    <td><%= vaccineCodeSNOMED %></td>
+  </tr>
+  <tr>
+    <td>vaccineCode (Display)</td>
+    <td><%= vaccineCodeDisplay %></td>
+  </tr>
+<table>
+
+
 <%- include('partials/footer'); -%>
