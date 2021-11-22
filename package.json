@@ -1,0 +1,29 @@
+{
+  "name": "hpvvacctest",
+  "version": "1.0.0",
+  "description": "This is an HPV Vaccination README file",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "request": "^2.88.2",
+    "util": "^0.12.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grahamd99/hpvvacctest.git"
+  },
+  "author": "Graham Dodsworth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grahamd99/hpvvacctest/issues"
+  },
+  "homepage": "https://github.com/grahamd99/hpvvacctest#readme"
+}

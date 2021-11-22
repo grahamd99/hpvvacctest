@@ -1,9 +1,18 @@
+console.log('No value for FOO yet:', process.env.Bearer);
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
+console.log('Now the value for Bearer is:', process.env.Bearer);
+
 var fs         = require('fs'),
     util       = require('util'),
     //xml2js   = require('xml2js'),
     express    = require("express"),
     bodyParser = require("body-parser")
     request    = require('request');
+    require('dotenv').config();
     ;
  
 //var parser = new xml2js.Parser();
@@ -23,7 +32,7 @@ const options = {
   url: 'https://demo3631513.mockable.io/FHIR/R4/Immunization%3Fpatient.identifier=https://fhir.nhs.uk/Id/nhs-number%7C9000000009&procedure-code:below=90640007',
   headers: {
               'accept': 'application/fhir+json',
-              'Authorization': 'Bearer eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwczovL2RlbW9uc3RyYXRvci5jb20iLCJzdWIiOiJodHRwczovL2ZoaXIubmhzLnVrL0lkL3Nkcy1yb2xlLXByb2ZpbGUtaWR8ZmFrZVJvbGVJZCIsImF1ZCI6Imh0dHBzOi8vbnJscy5jb20vZmhpci9kb2N1bWVudHJlZmVyZW5jZSIsImV4cCI6MTU4MzI3MjM0NSwiaWF0IjoxNTgzMjcyMDQ1LCJyZWFzb25fZm9yX3JlcXVlc3QiOiJkaXJlY3RjYXJlIiwic2NvcGUiOiJwYXRpZW50L0RvY3VtZW50UmVmZXJlbmNlLnJlYWQiLCJyZXF1ZXN0aW5nX3N5c3RlbSI6Imh0dHBzOi8vZmhpci5uaHMudWsvSWQvYWNjcmVkaXRlZC1zeXN0ZW18MjAwMDAwMDAwMTE3IiwicmVxdWVzdGluZ19vcmdhbml6YXRpb24iOiJodHRwczovL2ZoaXIubmhzLnVrL0lkL29kcy1vcmdhbml6YXRpb24tY29kZXxBTVMwMSIsInJlcXVlc3RpbmdfdXNlciI6Imh0dHBzOi8vZmhpci5uaHMudWsvSWQvc2RzLXJvbGUtcHJvZmlsZS1pZHxmYWtlUm9sZUlkIn0=.',
+              'Authorization': 'Bearer ' + process.env.Bearer,
               'fromASID': '200000000117',
               'toASID': '999999999999'
   }
