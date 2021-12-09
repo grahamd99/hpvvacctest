@@ -52,6 +52,12 @@ var numberOfResources = info.entry.length - 1;
 console.log("numberOfResources : " + numberOfResources);
 //console.log("type : " + typeof numberOfResources);
 
+global.immCounter = 0;
+global.vaccineProcedureCode = [];
+global.vaccineProcedureDisplay = [];
+global.vaccineCodeSNOMED = []; 
+global.vaccineCodeDisplay = []; 
+
 for (i = 0; i <= numberOfResources; i++) {
 
     console.log("i : " + i);
@@ -63,16 +69,22 @@ for (i = 0; i <= numberOfResources; i++) {
     var resource = info.entry[i].resource.resourceType;
     console.log( "this is the resource " + resource );
 
-
     if (resource == "Immunization")  {
 
-      console.log("SNOMED code: " + info.entry[i].resource.extension[0].valueCodeableConcept.coding[0].code);
-      console.log("SNOMED display: " + info.entry[i].resource.extension[0].valueCodeableConcept.coding[0].display);
+      global.immCounter++;
 
-      global.vaccineProcedureCode    = info.entry[i].resource.extension[0].valueCodeableConcept.coding[0].code;   
-      global.vaccineProcedureDisplay = info.entry[i].resource.extension[0].valueCodeableConcept.coding[0].display;
-      global.vaccineCodeSNOMED       = info.entry[i].resource.vaccineCode.coding[0].code;
-      global.vaccineCodeDisplay      = info.entry[i].resource.vaccineCode.coding[0].display;
+      console.log("i is " + i );
+
+      global.vaccineProcedureCode[i]    = info.entry[i].resource.extension[0].valueCodeableConcept.coding[0].code;   
+      global.vaccineProcedureDisplay[i] = info.entry[i].resource.extension[0].valueCodeableConcept.coding[0].display;
+      global.vaccineCodeSNOMED[i]       = info.entry[i].resource.vaccineCode.coding[0].code;
+      global.vaccineCodeDisplay[i]      = info.entry[i].resource.vaccineCode.coding[0].display;
+
+      //console.log("SNOMED code: " + info.entry[i].resource.extension[0].valueCodeableConcept.coding[0].code);
+      //console.log("SNOMED display: " + info.entry[i].resource.extension[0].valueCodeableConcept.coding[0].display);
+
+      console.log("Immcounter " + immCounter);
+
     }
 
     if (resource == "Patient")  {
@@ -84,6 +96,8 @@ for (i = 0; i <= numberOfResources; i++) {
     }
 
   }
+
+
 
    }
   else {
