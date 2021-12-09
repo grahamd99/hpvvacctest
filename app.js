@@ -41,28 +41,49 @@ const options = {
 function callback(error, response, body) {
   if (!error && response.statusCode == 200) {
 
+    console.log("success");
+
 
     // https://stackoverflow.com/questions/11922383/how-can-i-access-and-process-nested-objects-arrays-or-json -
     const info = JSON.parse(body);
 
-//var numberOfResources = info.entry.length - 1;
-var numberOfResources = info.entry.length;
+var numberOfResources = info.entry.length - 1;
+//var numberOfResources = info.entry.length;
 console.log("numberOfResources : " + numberOfResources);
-console.log("type : " + typeof numberOfResources);
+//console.log("type : " + typeof numberOfResources);
+
+for (i = 0; i <= numberOfResources; i++) {
+
+    console.log("i : " + i);
+
 
     //console.log( info );
-    console.log("pointer fullUrl : " + info.entry[0].fullUrl);
-    console.log("resource type type: " + info.entry[0].resource.resourceType);
-    console.log("SNOMED code: " + info.entry[0].resource.extension[0].valueCodeableConcept.coding[0].code);
-    console.log("SNOMED display: " + info.entry[0].resource.extension[0].valueCodeableConcept.coding[0].display);
+   // console.log("pointer fullUrl : " + info.entry[i].fullUrl);
+    console.log("resource type: " + info.entry[i].resource.resourceType);
+    var resource = info.entry[i].resource.resourceType;
+    console.log( "this is the resource " + resource );
 
 
-    global.vaccineProcedureCode    = info.entry[0].resource.extension[0].valueCodeableConcept.coding[0].code;
-    global.vaccineProcedureDisplay = info.entry[0].resource.extension[0].valueCodeableConcept.coding[0].display;
-    global.vaccineCodeSNOMED       = info.entry[0].resource.vaccineCode.coding[0].code;
-    global.vaccineCodeDisplay      = info.entry[0].resource.vaccineCode.coding[0].display;
+    if (resource == "Immunization")  {
 
+      console.log("SNOMED code: " + info.entry[i].resource.extension[0].valueCodeableConcept.coding[0].code);
+      console.log("SNOMED display: " + info.entry[i].resource.extension[0].valueCodeableConcept.coding[0].display);
 
+      global.vaccineProcedureCode    = info.entry[i].resource.extension[0].valueCodeableConcept.coding[0].code;   
+      global.vaccineProcedureDisplay = info.entry[i].resource.extension[0].valueCodeableConcept.coding[0].display;
+      global.vaccineCodeSNOMED       = info.entry[i].resource.vaccineCode.coding[0].code;
+      global.vaccineCodeDisplay      = info.entry[i].resource.vaccineCode.coding[0].display;
+    }
+
+    if (resource == "Patient")  {
+            // Patient resource
+      global.nhsnumber          = info.entry[i].resource.identifier[0].value;
+      global.patDOB1            = info.entry[i].resource.birthDate;
+      console.log("NHS Number: " + nhsnumber );
+      console.log("DOB: " + patDOB1 );
+    }
+
+  }
 
    }
   else {
